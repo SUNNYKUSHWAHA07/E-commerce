@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
-mongoose.connect(process.env.MONGOURL).then(function(){
+
+
+mongoose.connect(process.env.MONGOURL,{
+    serverSelectionTimeoutMS: 30000,
+    bufferCommands: false, 
+}).then(function(){
     console.log("connected to mongoDB");
 })
 
