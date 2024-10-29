@@ -14,8 +14,11 @@ const path = require("path")
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 
+
 require("dotenv").config();
 require("./config/db")
+
+const port = process.env.PORT || 4000;
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -45,7 +48,7 @@ app.use("/cart", cartRouter);
 app.use("/payment", paymentRouter);
 app.use("/order", orderRouter);
 
-app.listen(process.env.PORT || 3000 );
+app.listen(port);
 
 
 
