@@ -7,8 +7,9 @@ passport.use(new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL:"https://e-commerce-722w.onrender.com/auth/google/callback"||"http://localhost:4000/auth/google/callback",
-    
+    callbackURL: process.env.NODE_ENV === 'production' 
+    ? "https://e-commerce-722w.onrender.com/auth/google/callback" 
+    : "http://localhost:4000/auth/google/callback",
   },
   async function(accessToken, refreshToken, profile, cb) {
   try{
@@ -26,7 +27,10 @@ passport.use(new GoogleStrategy(
      
       cb(null, user)
    
-  } catch (error){cb(error, false)}
+  } catch (error){
+    console.error("Error during authentication:", error);
+    cb(error, false)
+  }
      
 }
 ));
