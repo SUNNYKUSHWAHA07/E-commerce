@@ -18,7 +18,6 @@ const passport = require("passport");
 require("dotenv").config();
 require("./config/db")
 
-const port = process.env.PORT || 4000;
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -47,6 +46,7 @@ app.use("/users", userRouter);
 app.use("/cart", cartRouter);
 app.use("/payment", paymentRouter);
 app.use("/order", orderRouter);
+const port = process.env.PORT || 4000;
 
 app.listen(port);
 
