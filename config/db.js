@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 
 
 mongoose.connect(process.env.MONGOURL,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
     serverSelectionTimeoutMS: 30000,
     bufferCommands: false, 
 }).then(function(){
